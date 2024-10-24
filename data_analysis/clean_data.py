@@ -1,12 +1,12 @@
 import pandas as pd
 
-# Function to clean percentage columns by removing '%' and converting to float
+# Clean percentage columns by removing '%' and converting to float
 def clean_percentage_column(df, column_name):
     # Convert column to string first to handle percentage removal
     df[column_name] = df[column_name].astype(str).str.replace('%', '').astype(float)
     return df
 
-# Function to clean monetary columns by removing '$' and ',' and converting to float
+# Clean monetary columns by removing '$' and ',' and converting to float
 def clean_monetary_column(df, column_name):
     # Only perform string operations if the column contains strings
     if df[column_name].dtype == 'object':
@@ -14,32 +14,32 @@ def clean_monetary_column(df, column_name):
     return df
 
 # Load the dataset
-input_file = 'rise_of_ai.csv'  # Change this to the location of your file
+input_file = 'rise_of_ai.csv' 
 df = pd.read_csv(input_file)
 
-# Clean monetary columns (use actual column names)
+# Clean monetary columns 
 monetary_columns = [
-    'AI Software Revenue(in Billions)',  # Corrected column name
-    'Global AI Market Value(in Billions)',  # Corrected column name
-    'AI Contribution to Healthcare(in Billions)',  # Corrected column name
-    'Estimated Revenue Increase from AI (trillions USD)'  # Corrected column name
+    'AI Software Revenue(in Billions)',  
+    'Global AI Market Value(in Billions)', 
+    'AI Contribution to Healthcare(in Billions)',  
+    'Estimated Revenue Increase from AI (trillions USD)'  
 ]
 for col in monetary_columns:
     df = clean_monetary_column(df, col)
 
-# Clean percentage columns (use actual column names)
+# Clean percentage columns 
 percentage_columns = [
     'AI Adoption (%)', 
     'Organizations Using AI', 
     'Organizations Planning to Implement AI', 
-    'Global Expectation for AI Adoption (%)',  # Corrected column name
+    'Global Expectation for AI Adoption (%)',  
     'Net Job Loss in the US', 
     'Organizations Believing AI Provides Competitive Edge', 
     'Companies Prioritizing AI in Strategy', 
     'Marketers Believing AI Improves Email Revenue', 
-    'Americans Using Voice Assistants (%)',  # Corrected column name
+    'Americans Using Voice Assistants (%)', 
     'Medical Professionals Using AI for Diagnosis', 
-    'Jobs at High Risk of Automation - Transportation & Storage (%)',  # Corrected column name
+    'Jobs at High Risk of Automation - Transportation & Storage (%)',  
     'Jobs at High Risk of Automation - Wholesale & Retail Trade', 
     'Jobs at High Risk of Automation - Manufacturing'
 ]
